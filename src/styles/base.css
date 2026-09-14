@@ -1,0 +1,108 @@
+/* ============================================================================
+   Reset + 全局基线
+   ========================================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--ff);
+    font-size: var(--fs-base);
+    line-height: 1.45;
+    color: var(--text-1);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
+    font-variant-numeric: tabular-nums;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent-text);
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+/* ------------------------------ 工具类 ------------------------------ */
+.mono {
+    font-family: var(--ff-mono);
+    letter-spacing: -0.01em;
+}
+
+.tnum {
+    font-variant-numeric: tabular-nums;
+}
+
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 降低动效偏好：全局收紧 */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

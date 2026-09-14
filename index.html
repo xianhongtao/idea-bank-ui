@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0a0b0d" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="极光银行" />
+    <title>极光银行 · 设计验证 Demo</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script>
+        /* 首帧前套用主题，避免刷新闪白/闪黑 */
+        (function () {
+            try {
+                var s = JSON.parse(localStorage.getItem('aurora.settings.v1') || '{}');
+                var mode = s.themeMode || 'dark';
+                var light = window.matchMedia('(prefers-color-scheme: light)').matches;
+                var theme = mode === 'system' ? (light ? 'light' : 'dark') : mode;
+                var r = document.documentElement;
+                r.dataset.theme = theme;
+                if (s.density) r.dataset.density = s.density;
+                if (s.accent) {
+                    r.style.setProperty('--accent-h', String(s.accent.h));
+                    r.style.setProperty('--accent-s', s.accent.s + '%');
+                    r.style.setProperty('--accent-l', s.accent.l + '%');
+                }
+            } catch (e) {
+                /* 忽略：回退到默认主题 */
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>

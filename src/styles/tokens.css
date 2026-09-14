@@ -1,0 +1,141 @@
+/* ============================================================================
+   Design tokens —— 所有视觉常量集中于此
+   深色为默认面；浅色主题在 [data-theme='light'] 覆盖
+   强调色由 theme.ts 在运行时写入 --accent-h / --accent-s / --accent-l
+   ========================================================================= */
+
+:root {
+    color-scheme: dark;
+
+    /* ---- 强调色（默认紫罗兰 #7c5cff，运行时覆盖） ---- */
+    --accent-h: 252;
+    --accent-s: 100%;
+    --accent-l: 68%;
+    --accent-l-text: 74%;
+    --accent-fg: #0b0b10;
+
+    --accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
+    --accent-press: hsl(var(--accent-h) var(--accent-s) calc(var(--accent-l) - 8%));
+    --accent-text: hsl(var(--accent-h) var(--accent-s) var(--accent-l-text));
+    --accent-soft: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.14);
+    --accent-line: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.36);
+    --accent-glow: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.24);
+
+    /* ---- 表面（深色） ---- */
+    --bg: #0a0b0d;
+    --surface-1: #111316;
+    --surface-2: #171a1f;
+    --surface-3: #1e2229;
+    --surface-glass: rgba(10, 11, 13, 0.72);
+    --line: rgba(255, 255, 255, 0.07);
+    --line-strong: rgba(255, 255, 255, 0.13);
+    --hi: rgba(255, 255, 255, 0.03);
+
+    /* ---- 文字 ---- */
+    --text-1: #f2f4f7;
+    --text-2: #a5adba;
+    --text-3: #6c7481;
+
+    /* ---- 语义色 ---- */
+    --pos: #34d399;
+    --neg: #f87171;
+    --warn: #fbbf24;
+    --info: #38bdf8;
+    --pos-soft: rgba(52, 211, 153, 0.13);
+    --neg-soft: rgba(248, 113, 113, 0.13);
+    --warn-soft: rgba(251, 191, 36, 0.13);
+    --info-soft: rgba(56, 189, 248, 0.13);
+    --pos-line: rgba(52, 211, 153, 0.34);
+    --neg-line: rgba(248, 113, 113, 0.34);
+
+    /* ---- 圆角 ---- */
+    --r-sm: 10px;
+    --r-md: 14px;
+    --r-lg: 20px;
+    --r-full: 999px;
+
+    /* ---- 字体 ---- */
+    --ff: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI Variable Text', 'Segoe UI',
+        'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, sans-serif;
+    --ff-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+    --fs-2xs: 10px;
+    --fs-xs: 11px;
+    --fs-sm: 12px;
+    --fs-md: 13px;
+    --fs-base: 15px;
+    --fs-lg: 17px;
+    --fs-xl: 20px;
+    --fs-2xl: 24px;
+    --fs-3xl: 30px;
+
+    /* ---- 密度（由 [data-density] 覆盖） ---- */
+    --row-h: 46px;
+    --gap-1: 6px;
+    --gap-2: 10px;
+    --gap-3: 14px;
+    --gap-4: 20px;
+    --pad-card: 16px;
+    --pad-screen: 16px;
+
+    /* ---- 动效 ---- */
+    --dur-1: 140ms;
+    --dur-2: 220ms;
+    --dur-3: 340ms;
+    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* ---- 布局 ---- */
+    --header-h: 52px;
+    --tabbar-h: 56px;
+    --app-max: 560px;
+    --safe-t: env(safe-area-inset-top, 0px);
+    --safe-b: env(safe-area-inset-bottom, 0px);
+
+    /* ---- 层次 ---- */
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-2: 0 16px 40px -18px rgba(0, 0, 0, 0.8);
+}
+
+/* ============================ 浅色主题 ============================ */
+[data-theme='light'] {
+    color-scheme: light;
+
+    --bg: #f6f7f9;
+    --surface-1: #ffffff;
+    --surface-2: #f1f3f6;
+    --surface-3: #e7eaef;
+    --surface-glass: rgba(246, 247, 249, 0.76);
+    --line: rgba(15, 20, 30, 0.09);
+    --line-strong: rgba(15, 20, 30, 0.16);
+    --hi: rgba(255, 255, 255, 0.9);
+
+    --text-1: #0f1419;
+    --text-2: #4a5361;
+    --text-3: #7a8494;
+
+    --pos: #0f9d6e;
+    --neg: #d34545;
+    --warn: #a8730f;
+    --info: #0b83c9;
+    --pos-soft: rgba(15, 157, 110, 0.1);
+    --neg-soft: rgba(211, 69, 69, 0.1);
+    --warn-soft: rgba(168, 115, 15, 0.1);
+    --info-soft: rgba(11, 131, 201, 0.1);
+    --pos-line: rgba(15, 157, 110, 0.3);
+    --neg-line: rgba(211, 69, 69, 0.3);
+
+    --shadow-1: 0 1px 2px rgba(15, 20, 30, 0.06);
+    --shadow-2: 0 18px 40px -22px rgba(15, 20, 30, 0.3);
+}
+
+/* ============================ 密度 ============================ */
+[data-density='compact'] {
+    --row-h: 40px;
+    --gap-1: 5px;
+    --gap-2: 8px;
+    --gap-3: 12px;
+    --gap-4: 16px;
+    --pad-card: 13px;
+    --pad-screen: 13px;
+    --tabbar-h: 52px;
+}
