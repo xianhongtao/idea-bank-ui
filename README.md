@@ -48,6 +48,15 @@ npm ci → npm run typecheck → npm run build → 上传 dist/ → actions/depl
 - 路由是 **hash 路由**，所有页面共用一个 pathname，所以子路径部署**不需要**服务端 rewrite，也不需要 `404.html`。
 - 走 Actions 部署时 GitHub 不会跑 Jekyll，因此不需要 `.nojekyll`。
 
+### 排查：线上白屏
+
+如果页面能打开但**完全空白**、控制台在要 `/src/main.tsx`，说明 Pages 的 Source 选成了
+**「Deploy from a branch」**——那样发布的是仓库源码（开发版 `index.html`），不是构建产物。
+
+特征是 Actions 里会同时出现两套运行记录：本仓库的 `Deploy to GitHub Pages`，以及 GitHub 内置的
+`pages-build-deployment`。**两者都会显示成功，但分支部署会覆盖 Actions 的产物**，所以只要
+`pages-build-deployment` 还在跑，就说明 Source 还是分支模式，改成「GitHub Actions」即可。
+
 ## 技术选型
 
 | 项 | 选择 | 理由 |
