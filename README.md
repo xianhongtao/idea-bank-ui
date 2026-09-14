@@ -8,6 +8,8 @@
 
 设计说明见 [DESIGN.md](./DESIGN.md)。
 
+**在线预览**：<https://xianhongtao.github.io/idea-bank-ui/>
+
 ## 运行
 
 ```bash
@@ -25,6 +27,26 @@ npm run preview      # 预览构建产物
 
 **建议用桌面浏览器的设备模拟查看**：打开开发者工具的设备工具栏，选 iPhone 尺寸（393×852），
 再用 360×800 与 320×568 复核一遍窄屏表现。
+
+## 部署
+
+推送到 `main` 即自动发布到 GitHub Pages（见 `.github/workflows/deploy.yml`）：
+
+```
+npm ci → npm run typecheck → npm run build → 上传 dist/ → actions/deploy-pages
+```
+
+首次需要在仓库设置里做两件事：
+
+1. **Settings → Pages → Source 选「GitHub Actions」**（不需要 `gh-pages` 分支）
+2. 免费账号下 Pages 只支持**公开**仓库；私有仓库需要 Pro / Team / Enterprise
+
+几个已经踩平的坑：
+
+- Pages 把站点挂在 `/<repo>/` 子路径下，所以构建时 `base` 必须是 `/idea-bank-ui/`（见 `vite.config.ts`），
+  否则 `index.html` 里的 `/assets/...` 会 404。本地 dev 仍用根路径，不受影响。
+- 路由是 **hash 路由**，所有页面共用一个 pathname，所以子路径部署**不需要**服务端 rewrite，也不需要 `404.html`。
+- 走 Actions 部署时 GitHub 不会跑 Jekyll，因此不需要 `.nojekyll`。
 
 ## 技术选型
 
